@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configurations\ApplicationUserConfiguration.cs" />
+    <Compile Include="Configurations\EntryConfiguration.cs" />
     <Compile Include="Domain\ApplicationUser.cs" />
     <Compile Include="Domain\Attendance.cs" />
     <Compile Include="Domain\Base\EntityWithCreated.cs" />

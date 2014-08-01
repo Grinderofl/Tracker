@@ -24,6 +24,8 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Raids", "Index", "Raids")</li>
                     <li>@Html.ActionLink("Characters", "Index", "Characters")</li>
+                    <li>@Html.ActionLink("Attendance", "Index", "Attendances")</li>
+                    <li>@Html.ActionLink("Events", "Index", "Events")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -39,6 +41,7 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Html.Partial("_SharedScripts")
     @RenderSection("scripts", required: false)
 </body>
 </html>

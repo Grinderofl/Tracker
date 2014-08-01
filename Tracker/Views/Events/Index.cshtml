@@ -1,0 +1,46 @@
+﻿@model Tracker.Features.Events.Models.EventsListViewModel
+
+@{
+    ViewBag.Title = "Events";
+}
+
+<h2>Events</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Raid
+        </th>
+        <th>
+            Date
+        </th>
+        <th>
+            Participants
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Events)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Raid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RaidDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Participants)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>

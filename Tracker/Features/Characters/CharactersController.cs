@@ -14,12 +14,12 @@ namespace Tracker.Features.Characters
 {
     public class CharactersController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private readonly ApplicationDbContext _db = new ApplicationDbContext();
 
         // GET: /Characters/
         public ActionResult Index()
         {
-            return View(db.Characters.ToList());
+            return View(_db.Characters.ToList());
         }
 
         private void AssignViewItems()
@@ -35,7 +35,7 @@ namespace Tracker.Features.Characters
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Character character = db.Characters.Find(id);
+            Character character = _db.Characters.Find(id);
             if (character == null)
             {
                 return HttpNotFound();
@@ -59,8 +59,8 @@ namespace Tracker.Features.Characters
         {
             if (ModelState.IsValid)
             {
-                db.Characters.Add(character);
-                db.SaveChanges();
+                _db.Characters.Add(character);
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
             AssignViewItems();
@@ -74,7 +74,7 @@ namespace Tracker.Features.Characters
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Character character = db.Characters.Find(id);
+            Character character = _db.Characters.Find(id);
             if (character == null)
             {
                 return HttpNotFound();
@@ -91,8 +91,8 @@ namespace Tracker.Features.Characters
         {
             if (ModelState.IsValid)
             {
-                db.Entry(character).State = EntityState.Modified;
-                db.SaveChanges();
+                _db.Entry(character).State = EntityState.Modified;
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(character);
@@ -105,7 +105,7 @@ namespace Tracker.Features.Characters
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Character character = db.Characters.Find(id);
+            Character character = _db.Characters.Find(id);
             if (character == null)
             {
                 return HttpNotFound();
@@ -118,9 +118,9 @@ namespace Tracker.Features.Characters
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(long id)
         {
-            Character character = db.Characters.Find(id);
-            db.Characters.Remove(character);
-            db.SaveChanges();
+            Character character = _db.Characters.Find(id);
+            _db.Characters.Remove(character);
+            _db.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -128,7 +128,7 @@ namespace Tracker.Features.Characters
         {
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }
