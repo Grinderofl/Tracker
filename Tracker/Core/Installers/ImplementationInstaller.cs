@@ -21,7 +21,6 @@ namespace Tracker.Core.Installers
                                 x =>
                                     x.Namespace != null &&
                                     x.Namespace.EndsWith("Impl", StringComparison.OrdinalIgnoreCase))
-                            .LifestylePerWebRequest()
                             .WithServiceAllInterfaces());
             action.VisitAssemblies(registrar);
         }

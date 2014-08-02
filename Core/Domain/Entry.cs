@@ -12,6 +12,6 @@ namespace Core.Domain
         public Raid Raid { get; set; }
         public DateTime RaidDate { get; set; }
         public ApplicationUser Author { get; set; }
-        public ICollection<Attendance> Attendances { get; set; }
+        public virtual ICollection<Attendance> Attendances { get; set; }
     }
 }

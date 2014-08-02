@@ -1,5 +1,5 @@
 ﻿@using Core.Domain
-@model Core.Domain.Character
+@model Tracker.Features.Characters.Model.CharacterFieldsModel
 
 @{
     ViewBag.Title = "Create";
@@ -28,7 +28,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Class, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Class)
+                @Html.DropDownListFor(model => model.Class, Model.PossibleClasses)
                 @Html.ValidationMessageFor(model => model.Class)
             </div>
         </div>
@@ -36,7 +36,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Race, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Race, (IEnumerable<SelectListItem>)ViewBag.Races)
+                @Html.DropDownListFor(model => model.Race, Model.PossibleRaces)
                 @Html.ValidationMessageFor(model => model.Race)
             </div>
         </div>

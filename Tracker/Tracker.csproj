@@ -56,6 +56,9 @@
     <Reference Include="Castle.Windsor.Mvc">
       <HintPath>..\packages\Castle.Windsor.Mvc.1.3.0.0\lib\net45\Castle.Windsor.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="HibernatingRhinos.Profiler.Appender">
+      <HintPath>..\packages\EntityFrameworkProfiler.Appender.2.0.2237.0\lib\HibernatingRhinos.Profiler.Appender.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -176,19 +179,32 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WindsorConfig.cs" />
+    <Compile Include="Core\Installers\MappingActionsInstaller.cs" />
     <Compile Include="Core\Installers\ProfileInstaller.cs" />
     <Compile Include="Core\Installers\ContextInstaller.cs" />
+    <Compile Include="Core\Installers\TypeConverterInstallers.cs" />
+    <Compile Include="Core\Installers\ValueResolverInstaller.cs" />
     <Compile Include="Core\Windsor\InstallerPriorityAttribute.cs" />
     <Compile Include="Core\Windsor\PriorityInstallerFactory.cs" />
     <Compile Include="Features\Account\AccountController.cs" />
     <Compile Include="Features\Attendances\Models\AttendancesViewModel.cs" />
     <Compile Include="Features\Characters\CharactersController.cs" />
+    <Compile Include="Features\Characters\Model\CharacterFieldsModel.cs" />
+    <Compile Include="Features\Characters\Model\CharactersListItem.cs" />
+    <Compile Include="Features\Characters\Model\CharactersListViewModel.cs" />
     <Compile Include="Features\Core\Extensions\EnumExtensions.cs" />
+    <Compile Include="Features\Core\Mapping\CharactersMapping.cs" />
+    <Compile Include="Features\Core\Mapping\EventListItemRaidResolver.cs" />
     <Compile Include="Features\Core\Mapping\EventMapping.cs" />
     <Compile Include="Features\Events\EventsController.cs" />
     <Compile Include="Features\Events\Models\EventFieldsModel.cs" />
     <Compile Include="Features\Events\Models\EventListItem.cs" />
     <Compile Include="Features\Events\Models\EventsListViewModel.cs" />
+    <Compile Include="Features\Events\Models\Mapping\EntryToAttendeesResolver.cs" />
+    <Compile Include="Features\Events\Models\Mapping\EventFieldsModelToEntryConverter.cs" />
+    <Compile Include="Features\Events\Models\Mapping\EventFieldToAttendeesResolver.cs" />
+    <Compile Include="Features\Events\Models\Mapping\EventProfile.cs" />
+    <Compile Include="Features\Events\Models\Mapping\RaidResolver.cs" />
     <Compile Include="Features\Home\HomeController.cs" />
     <Compile Include="Core\AssemblyRegistrar.cs" />
     <Compile Include="Core\Extensions\AssemblyRegistrarExtensions.cs" />
@@ -319,6 +335,7 @@
     <Content Include="Views\Events\Index.cshtml" />
     <Content Include="Views\Events\Create.cshtml" />
     <Content Include="Views\Shared\_SharedScripts.cshtml" />
+    <Content Include="Views\Events\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

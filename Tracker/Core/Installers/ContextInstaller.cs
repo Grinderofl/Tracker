@@ -14,7 +14,7 @@ namespace Tracker.Core.Installers
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            container.Register(Component.For<DbContext>().ImplementedBy<ApplicationDbContext>().LifestylePerWebRequest());
+            container.Register(Component.For<DbContext>().ImplementedBy<ApplicationDbContext>());
         }
     }
 }

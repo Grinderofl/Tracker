@@ -16,8 +16,7 @@ namespace Tracker.Core.Installers
                 Types.FromAssemblyContaining<ControllersInstaller>()
                     .Pick()
                     .If(x => x.Name.EndsWith("Controller"))
-                    .Configure(x => x.Named(x.Implementation.Name))
-                    .LifestylePerWebRequest());
+                    .Configure(x => x.Named(x.Implementation.Name)));
         }
     }
 }

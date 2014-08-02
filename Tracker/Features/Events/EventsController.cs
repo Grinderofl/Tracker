@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Diagnostics.Contracts;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
@@ -42,10 +44,41 @@ namespace Tracker.Features.Events
         }
 
         [HttpPost]
-        public ActionResult Create(EventFieldsModel model)
+        public ActionResult Create([Bind(Exclude = "Id")]EventFieldsModel model)
         {
+            if (ModelState.IsValid)
+            {
+                var mapped = Mapper.Map<Entry>(model);
+                _context.Set<Entry>().Add(mapped);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
             model.PossibleRaids = GetPossibleRaids();
             return View(model);
+        }
+
+        public ActionResult Edit(long? id)
+        {
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            var loaded = _context.Set<Entry>().Include(x => x.Raid).Include(x => x.Attendances.Select(c => c.Attendee)).First(x => x.Id == id);
+
+            var model =
+                Mapper.Map<EventFieldsModel>(loaded);
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(EventFieldsModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                Mapper.Map<Entry>(model);
+                _context.SaveChanges();
+            }
+            return View(Mapper.Map<EventFieldsModel>(model));
         }
 
         private IEnumerable<SelectListItem> GetPossibleRaids()

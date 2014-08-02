@@ -15,7 +15,12 @@ namespace Tracker.Core.Installers
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            Mapper.Initialize(x => GetAutoMapperConfiguration(Mapper.Configuration, container));
+            Mapper.Initialize(x =>
+            {
+                GetAutoMapperConfiguration(Mapper.Configuration, container);
+                x.ConstructServicesUsing(type => container.Resolve(type));
+                x.AllowNullDestinationValues = false;
+            });
         }
 
         private void GetAutoMapperConfiguration(IConfiguration configuration, IWindsorContainer container)
