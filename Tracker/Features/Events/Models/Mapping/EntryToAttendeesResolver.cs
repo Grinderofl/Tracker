@@ -3,6 +3,8 @@ using System.Data.Entity;
 using System.Linq;
 using AutoMapper;
 using Core.Domain;
+using Core.Features.Extensions;
+using Core.Features.Queries.Characters;
 
 namespace Tracker.Features.Events.Models.Mapping
 {
@@ -17,7 +19,7 @@ namespace Tracker.Features.Events.Models.Mapping
 
         protected override AttendanceItem[] ResolveCore(Entry source)
         {
-            var characters = _context.Set<Character>().ToList();
+            var characters = _context.Query(new SelectActiveCharactersQuery()).ToList();
             var result = new List<AttendanceItem>();
 
             foreach (var character in characters)

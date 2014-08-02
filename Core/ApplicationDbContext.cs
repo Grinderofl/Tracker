@@ -6,6 +6,7 @@ using Castle.Core.Internal;
 using Castle.Windsor;
 using Core.Domain;
 using Core.Domain.Base;
+using Core.Features.Queries.Base;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Classes = Castle.MicroKernel.Registration.Classes;
 
@@ -55,7 +56,5 @@ namespace Core
 
             return base.SaveChanges();
         }
-
-        public System.Data.Entity.DbSet<Core.Domain.Character> Characters { get; set; }
     }
 }

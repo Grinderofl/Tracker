@@ -72,9 +72,16 @@
     <Compile Include="Domain\Races.cs" />
     <Compile Include="Domain\Raid.cs" />
     <Compile Include="ApplicationDbContext.cs" />
+    <Compile Include="Features\Extensions\DbContextExtensions.cs" />
+    <Compile Include="Features\Queries\Base\AbstractQuery.cs" />
+    <Compile Include="Features\Queries\Characters\SelectActiveCharactersQuery.cs" />
     <Compile Include="Migrations\201408010754223_Initial.cs" />
     <Compile Include="Migrations\201408010754223_Initial.Designer.cs">
       <DependentUpon>201408010754223_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201408021104419_added-hidden.cs" />
+    <Compile Include="Migrations\201408021104419_added-hidden.Designer.cs">
+      <DependentUpon>201408021104419_added-hidden.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -87,10 +94,11 @@
     <EmbeddedResource Include="Migrations\201408010754223_Initial.resx">
       <DependentUpon>201408010754223_Initial.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408021104419_added-hidden.resx">
+      <DependentUpon>201408021104419_added-hidden.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Features\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

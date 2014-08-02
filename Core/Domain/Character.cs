@@ -13,5 +13,6 @@ namespace Core.Domain
         public Classes Class { get; set; }
         public Races Race { get; set; }
         public virtual ICollection<Attendance> Attendances { get; set; }
+        public bool Hidden { get; set; }
     }
 }
