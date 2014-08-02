@@ -29,29 +29,68 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Class)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Race)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Created)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Modified)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Class)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Race)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Created)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Modified)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
 </table>
+@using (Html.BeginForm("Create", "Characters", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    <div class="row">
+        <div class="col-md-12" id="add-new">
+            
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <div class="col-md-12">
+                    <input type="submit" value="Save" class="btn btn-success" style="display:none;" id="button-save" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@using (Ajax.BeginForm("Create", "Characters", new AjaxOptions() {HttpMethod = "GET", UpdateTargetId = "add-new", InsertionMode = InsertionMode.InsertAfter, OnSuccess = "incrementId"}))
+{
+    @Html.Hidden("lastId", 0)
+    <div class="row">
+        <div class="col-md-12" id="add-new">
+            <div class="form-group">
+                <input type="submit" value="Quick add" class="btn btn-primary"/>
+                @*@Ajax.ActionLink("Quick Add", "Create", null, new AjaxOptions() {HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = "add-new"}, new {@class = "btn btn-primary"})*@
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    <script type="text/javascript">
+        function incrementId() {
+            $('#lastId').val(parseInt($('#lastId').val()) + 1);
+            $('#button-save').show();
+        }
+    </script>
+}

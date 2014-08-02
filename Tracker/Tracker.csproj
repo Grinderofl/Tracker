@@ -190,10 +190,11 @@
     <Compile Include="Features\Attendances\Models\AttendancesViewModel.cs" />
     <Compile Include="Features\Characters\CharactersController.cs" />
     <Compile Include="Features\Characters\Model\CharacterFieldsModel.cs" />
+    <Compile Include="Features\Characters\Model\CharacterListFieldsModel.cs" />
     <Compile Include="Features\Characters\Model\CharactersListItem.cs" />
     <Compile Include="Features\Characters\Model\CharactersListViewModel.cs" />
     <Compile Include="Features\Core\Extensions\EnumExtensions.cs" />
-    <Compile Include="Features\Core\Mapping\CharactersMapping.cs" />
+    <Compile Include="Features\Characters\Model\CharactersMapping.cs" />
     <Compile Include="Features\Core\Mapping\EventListItemRaidResolver.cs" />
     <Compile Include="Features\Core\Mapping\EventMapping.cs" />
     <Compile Include="Features\Events\EventsController.cs" />
@@ -237,6 +238,8 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -336,6 +339,7 @@
     <Content Include="Views\Events\Create.cshtml" />
     <Content Include="Views\Shared\_SharedScripts.cshtml" />
     <Content Include="Views\Events\Edit.cshtml" />
+    <Content Include="Views\Characters\QuickCreate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

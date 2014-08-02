@@ -1,16 +1,18 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using System.Linq;
+using AutoMapper;
 using Core.Domain;
-using Tracker.Features.Characters.Model;
 
-namespace Tracker.Features.Core.Mapping
+namespace Tracker.Features.Characters.Model
 {
-    public class CharactersMapping : Profile
+    public class CharactersProfile : Profile
     {
         protected override void Configure()
         {
             CreateMap<Character, CharactersListItem>();
             CreateMap<CharacterFieldsModel, Character>();
             CreateMap<Character, CharacterFieldsModel>();
+
         }
     }
 }

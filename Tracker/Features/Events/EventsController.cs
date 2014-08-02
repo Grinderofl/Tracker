@@ -77,6 +77,7 @@ namespace Tracker.Features.Events
             {
                 Mapper.Map<Entry>(model);
                 _context.SaveChanges();
+                return RedirectToAction("Edit", new {id = model.Id});
             }
             return View(Mapper.Map<EventFieldsModel>(model));
         }

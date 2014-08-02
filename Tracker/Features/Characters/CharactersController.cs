@@ -48,24 +48,28 @@ namespace Tracker.Features.Characters
             return View(character);
         }
 
-        public ActionResult Create()
+        public ActionResult Create(long? lastId)
         {
+            if (Request.IsAjaxRequest())
+                return PartialView("QuickCreate", new CharacterFieldsModel() {Id = lastId ?? 0});
             return View(new CharacterFieldsModel());
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="Name,Class,Race")] CharacterFieldsModel character)
+        public ActionResult Create(CharacterFieldsModel[] characters)
         {
             if (ModelState.IsValid)
             {
-                var model = Mapper.Map<Character>(character);
-                _db.Set<Character>().Add(model);
+                var model = Mapper.Map<Character[]>(characters);
+                foreach (var character in model)
+                {
+                    _db.Set<Character>().Add(character);
+                }
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
             AssignViewItems();
-            return View(character);
+            return View(characters);
         }
 
         public ActionResult Edit(long? id)

@@ -1,0 +1,13 @@
+﻿@model Tracker.Features.Characters.Model.CharacterFieldsModel
+
+<div class="form-group">
+    <div class="col-md-4">
+        @Html.TextBox("[" + Model.Id + "].Name", null, new { @class = "form-control", placeholder = "Character name" })
+    </div>
+    <div class="col-md-4">
+        @Html.DropDownList("[" + Model.Id + "].Class", Model.PossibleClasses, new { @class = "form-control" })
+    </div>
+    <div class="col-md-4">
+        @Html.DropDownList("[" + Model.Id + "].Race", Model.PossibleRaces, new { @class = "form-control" })
+    </div>
+</div>
