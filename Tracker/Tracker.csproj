@@ -223,9 +223,13 @@
     <Compile Include="Features\Attendances\AttendancesController.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-darkly.min.css" />
     <Content Include="Content\bootstrap-datepicker.css" />
     <Content Include="Content\bootstrap-datepicker3.css" />
+    <Content Include="Content\bootstrap-slate.min.css" />
+    <Content Include="Content\bootstrap-slate.css" />
     <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap-darkly.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -340,6 +344,7 @@
     <Content Include="Views\Shared\_SharedScripts.cshtml" />
     <Content Include="Views\Events\Edit.cshtml" />
     <Content Include="Views\Characters\QuickCreate.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

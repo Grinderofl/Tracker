@@ -20,7 +20,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.RaidId, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.RaidId, Model.PossibleRaids)
+                @Html.DropDownListFor(model => model.RaidId, Model.PossibleRaids, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.RaidId)
             </div>
         </div>
@@ -32,41 +32,55 @@
                 @Html.ValidationMessageFor(model => model.RaidDate)
             </div>
         </div>
-        
+
         <div class="form-group">
             @Html.LabelFor(x => x.Attendees, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <table class="table">
-                    <tr>
-                        <th>Character</th>
-                        <th>Attended</th>
-                        <th>AFK Post</th>
-                        <th>Late</th>
-                    </tr>
-                    @foreach (var attendee in Model.Attendees)
-                    {
-                        @Html.Hidden("Attendees[" + counter +"].Id", attendee.Id)
-                        @Html.Hidden("Attendees[" + counter + "].CharacterId", attendee.CharacterId)
+                <div class="row">
+                        <div class="col-md-3">
+                            <h4>Character</h4>
+                        </div>
+                        <div class="col-md-3">
+                            <h4>Attended</h4>
+                        </div>
+                        <div class="col-md-3">
+                            <h4>AFK Post</h4>
+                        </div>
+                        <div class="col-md-3">
+                            <h4>Late</h4>
+                        </div>
+                    @*<table class="table">
                         <tr>
-                            <td>
-                                @attendee.Character
-                            </td>
-                            <td>
-                                @Html.CheckBox("Attendees[" + counter + "].HasAttended", attendee.HasAttended)
-                            </td>
-                            <td>
-                                @Html.CheckBox("Attendees[" + counter + "].HasAfkPost", attendee.HasAfkPost)
-                            </td>
-                            <td>
-                                @Html.CheckBox("Attendees[" + counter + "].IsLate", attendee.IsLate)
-                            </td>
-                        </tr>
+                            <th>Character</th>
+                            <th>Attended</th>
+                            <th>AFK Post</th>
+                            <th>Late</th>
+                        </tr>*@
+                </div>
+                @foreach (var attendee in Model.Attendees)
+                {
+                    <div class="row">
+                        <div class="col-md-3">
+                            @Html.Hidden("Attendees[" + counter + "].Id", attendee.Id)
+                            @Html.Hidden("Attendees[" + counter + "].CharacterId", attendee.CharacterId)
+                            <strong>@attendee.Character</strong>
+                        </div>
+                        <div class="col-md-3">
+                            @Html.CheckBox("Attendees[" + counter + "].HasAttended", attendee.HasAttended, new { @class = "form-control24" })
+                        </div>
+                        <div class="col-md-3">
+                            @Html.CheckBox("Attendees[" + counter + "].HasAfkPost", attendee.HasAfkPost, new { @class = "form-control2" })
+                        </div>
+                        <div class="col-md-3">
+                            @Html.CheckBox("Attendees[" + counter + "].IsLate", attendee.IsLate, new { @class = "form-control2" })
+                        </div>
+                    </div>
 
-                        counter++;
-                    }
-                </table>
-                
-                
+                    counter++;
+                }
+                @*</table>*@
+
+
             </div>
         </div>
 

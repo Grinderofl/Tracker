@@ -60,8 +60,8 @@ namespace Tracker.Features.Characters
         {
             if (ModelState.IsValid)
             {
-                var model = Mapper.Map<Character[]>(characters);
-                foreach (var character in model)
+                var mapped = Mapper.Map<Character[]>(characters);
+                foreach (var character in mapped.Where(x => string.IsNullOrWhiteSpace(x.Name)))
                 {
                     _db.Set<Character>().Add(character);
                 }

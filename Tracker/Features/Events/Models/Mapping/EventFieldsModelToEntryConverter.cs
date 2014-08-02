@@ -17,12 +17,13 @@ namespace Tracker.Features.Events.Models.Mapping
         public Entry Convert(ResolutionContext context)
         {
             var source = ((EventFieldsModel) context.SourceValue);
-
-            var entry =
-                _context.Set<Entry>()
+            Entry entry = source.Id > 0
+                ? _context.Set<Entry>()
                     .Include(x => x.Attendances.Select(a => a.Attendee))
-                    .First(x => x.Id == source.Id);
-
+                    .First(x => x.Id == source.Id)
+                : new Entry();
+            entry.RaidDate = source.RaidDate;
+            entry.Raid = _context.Set<Raid>().First(x => x.Id == source.RaidId);
             // Ids of characters that should be included
             var ids = source.Attendees.Where(x => x.HasAttended).Select(x => x.CharacterId).ToList();
             var nonExistingIds =

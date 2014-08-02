@@ -9,6 +9,10 @@ namespace Tracker.Features.Events.Models
 {
     public class EventFieldsModel
     {
+        public EventFieldsModel()
+        {
+            Attendees = new List<AttendanceItem>();
+        }
         public long Id { get; set; }
         
         [Required]
@@ -16,7 +20,7 @@ namespace Tracker.Features.Events.Models
         public long RaidId { get; set; }
 
         public IEnumerable<SelectListItem> PossibleRaids { get; set; }
-        public AttendanceItem[] Attendees { get; set; }
+        public ICollection<AttendanceItem> Attendees { get; set; }
         public DateTime RaidDate { get; set; }
     }
 
