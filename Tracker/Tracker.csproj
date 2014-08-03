@@ -199,7 +199,7 @@
     <Compile Include="Features\Characters\Model\CharactersListItem.cs" />
     <Compile Include="Features\Characters\Model\CharactersListViewModel.cs" />
     <Compile Include="Features\Core\Extensions\EnumExtensions.cs" />
-    <Compile Include="Features\Characters\Model\CharactersMapping.cs" />
+    <Compile Include="Features\Characters\Model\CharactersProfile.cs" />
     <Compile Include="Features\Core\Mapping\EventListItemRaidResolver.cs" />
     <Compile Include="Features\Core\Mapping\EventMapping.cs" />
     <Compile Include="Features\Events\EventsController.cs" />

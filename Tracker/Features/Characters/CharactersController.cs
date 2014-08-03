@@ -83,20 +83,22 @@ namespace Tracker.Features.Characters
             {
                 return HttpNotFound();
             }
-            return View(character);
+            return View(Mapper.Map<CharacterFieldsModel>(character));
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="Id,Name,Class,Race")] Character character)
+        public ActionResult Edit(CharacterFieldsModel model)
         {
             if (ModelState.IsValid)
             {
+                var character = _db.Set<Character>().First(x => x.Id == model.Id);
+                Mapper.Map(model, character);
                 _db.Entry(character).State = EntityState.Modified;
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(character);
+            return View(model);
         }
 
         public ActionResult Delete(long? id)
