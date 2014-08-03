@@ -1,10 +1,44 @@
 ﻿<script>
-    $(function() {
+    $(function () {
+
+        //$.validator.addMethod('date',
+        //    function(value, element, params) {
+        //        if (this.optional(element)) {
+        //            return true;
+        //        }
+
+        //        var ok = true;
+        //        try {
+        //            $.datepicker.parseDate('dd-MM-yyyy', value);
+        //        } catch (err) {
+        //            ok = false;
+        //        }
+        //        return ok;
+        //    });
+
         $('.datepicker').datepicker({
-            format: 'dd-mm-yyyy',
+            format: 'dd-MM-yyyy',
             todayButton: 'linked',
             todayHighlight: true,
             weekStart: 1
         });
+        jQuery.validator.methods["date"] = function (value, element) { return true; }
     });
+
+    //jQuery.extend(jQuery.validator.methods, {
+    //    date: function (value, element) {
+    //        var isChrome = window.chrome;
+    //        // make correction for chrome
+    //        if (isChrome) {
+    //            var d = new Date();
+    //            return this.optional(element) ||
+    //            !/Invalid|NaN/.test(new Date(d.toLocaleDateString(value)));
+    //        }
+    //            // leave default behavior
+    //        else {
+    //            return this.optional(element) ||
+    //            !/Invalid|NaN/.test(new Date(value));
+    //        }
+    //    }
+
 </script>
