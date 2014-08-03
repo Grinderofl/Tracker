@@ -52,7 +52,7 @@ namespace Tracker.Features.Characters
         {
             if (Request.IsAjaxRequest())
                 return PartialView("QuickCreate", new CharacterFieldsModel() {Id = lastId ?? 0});
-            return View(new CharacterFieldsModel());
+            return View(new List<CharacterFieldsModel>(){new CharacterFieldsModel()});
         }
 
         [HttpPost]
@@ -61,7 +61,7 @@ namespace Tracker.Features.Characters
             if (ModelState.IsValid)
             {
                 var mapped = Mapper.Map<Character[]>(characters);
-                foreach (var character in mapped.Where(x => string.IsNullOrWhiteSpace(x.Name)))
+                foreach (var character in mapped.Where(x => !string.IsNullOrWhiteSpace(x.Name)))
                 {
                     _db.Set<Character>().Add(character);
                 }

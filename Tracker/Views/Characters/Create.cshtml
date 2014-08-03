@@ -1,5 +1,5 @@
 ﻿@using Core.Domain
-@model Tracker.Features.Characters.Model.CharacterFieldsModel
+@model IList<Tracker.Features.Characters.Model.CharacterFieldsModel>
 
 @{
     ViewBag.Title = "Create";
@@ -18,26 +18,26 @@
         @Html.ValidationSummary(true)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model[0].Name, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Name)
-                @Html.ValidationMessageFor(model => model.Name)
+                @Html.TextBoxFor(model => model[0].Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model[0].Name)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Class, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model[0].Class, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Class, Model.PossibleClasses)
-                @Html.ValidationMessageFor(model => model.Class)
+                @Html.DropDownListFor(model => model[0].Class, Model[0].PossibleClasses, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model[0].Class)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Race, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model[0].Race, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Race, Model.PossibleRaces)
-                @Html.ValidationMessageFor(model => model.Race)
+                @Html.DropDownListFor(model => model[0].Race, Model[0].PossibleRaces, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model[0].Race)
             </div>
         </div>
 
