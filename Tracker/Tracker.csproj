@@ -179,6 +179,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WindsorConfig.cs" />
+    <Compile Include="Core\DateTimeModelBinder.cs" />
     <Compile Include="Core\Installers\MappingActionsInstaller.cs" />
     <Compile Include="Core\Installers\ProfileInstaller.cs" />
     <Compile Include="Core\Installers\ContextInstaller.cs" />
@@ -187,7 +188,11 @@
     <Compile Include="Core\Windsor\InstallerPriorityAttribute.cs" />
     <Compile Include="Core\Windsor\PriorityInstallerFactory.cs" />
     <Compile Include="Features\Account\AccountController.cs" />
+    <Compile Include="Features\Attendances\Models\AttendancesFilterModel.cs" />
+    <Compile Include="Features\Attendances\Models\AttendancesListViewModel.cs" />
     <Compile Include="Features\Attendances\Models\AttendancesViewModel.cs" />
+    <Compile Include="Features\Attendances\Models\Mapping\AttendancesFilterToListConverter.cs" />
+    <Compile Include="Features\Attendances\Models\Mapping\AttendancesProfile.cs" />
     <Compile Include="Features\Characters\CharactersController.cs" />
     <Compile Include="Features\Characters\Model\CharacterFieldsModel.cs" />
     <Compile Include="Features\Characters\Model\CharacterListFieldsModel.cs" />
@@ -231,6 +236,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap-darkly.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\datepicker.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

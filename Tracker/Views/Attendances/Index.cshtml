@@ -1,7 +1,84 @@
-﻿@model IEnumerable<Core.Domain.Attendance>
+﻿@using System.Dynamic
+@model Tracker.Features.Attendances.Models.AttendancesListViewModel
 
 @{
     ViewBag.Title = "Attendances";
 }
 
-<h2>title</h2>
+<h2>Attendances</h2>
+
+@using (Html.BeginForm("Index", "Attendances", FormMethod.Get, new { @class = "form-inline", role = "form", id = "filter-form" }))
+{
+    var counter = 1;
+    <div class="row" id="filter-add">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>Add filter:</label>
+            </div>
+            <div class="form-group">
+                @Html.TextBox("[0].Start", null, new { @class = "form-control datepicker", placeholder = "Choose starting date" })
+            </div>
+            <div class="form-group">
+                @Html.TextBox("[0].End", null, new { @class = "form-control datepicker", placeholder = "Choose end date" })
+            </div>
+            <div class="form-group">
+                <label class="btn btn-success" for="btn-add">Add</label>
+                <input type="submit" name="[0].Add" value="true" id="btn-add" class="hidden"/>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table">
+                <tr>
+                    <th>
+                        Character
+                    </th>
+                    @foreach (var item in Model.Filter)
+                    {
+                        var sort = "up";
+                        var icon = "-alt";
+                        var highlight = "warning";
+                        if (!string.IsNullOrWhiteSpace(item.Sort))
+                        {
+                            sort = item.Sort == "up" ? "down" : sort;
+                            icon = item.Sort == "down" ? "" : icon;
+                            highlight = "success";
+                        }
+                        <th>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    @Html.Hidden("[" + counter + "].Start", item.Start.HasValue ? item.Start.Value.ToString("dd-MM-yyyy") : "")
+                                    @Html.Hidden("[" + counter + "].End", item.End.HasValue ? item.End.Value.ToString("dd-MM-yyyy") : "")
+                                    @Html.DisplayFor(x => item.Start) <br /> @Html.DisplayFor(x => item.End)
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="delete@(counter)" class="btn btn-danger"><i>-</i></label>
+                                    <input type="submit" id="delete@(counter)" name="[@counter].Delete" value="true" class="hidden"/>
+                                    <label for="sort@(counter)" class="btn btn-@highlight"><i class="glyphicon glyphicon-sort-by-attributes@(icon)"></i></label>
+                                    <input type="submit" id="sort@(counter)" name="[@counter].Sort" value="@sort" class="hidden"/>
+                                </div>
+                            </div>
+                        </th>
+                        counter++;
+                    }
+                </tr>
+                <tbody>
+                    @foreach (var attendance in Model.Attendance)
+                    {
+                        <tr>
+                            <td>@attendance.Character</td>
+                            @for (var i = 0; i < Model.Filter.Count(); i++)
+                            {
+                                <td>
+                                    @attendance.Attendances.ElementAt(i).ToString("P")
+                                </td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+}

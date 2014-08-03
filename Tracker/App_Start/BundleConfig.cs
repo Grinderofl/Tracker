@@ -27,7 +27,7 @@ namespace Tracker
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap-slate.css",
-                      "~/Content/bootstrap-datepicker.css",
+                      "~/Content/datepicker.css",
                       "~/Content/site.css"));
         }
     }
